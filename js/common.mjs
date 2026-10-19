@@ -1,3 +1,13 @@
+export const daysOfWeek = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 export function getCurrentMonthAndYear() {
   const today = new Date();
 

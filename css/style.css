@@ -4,7 +4,12 @@
   gap: 8px;
 }
 
+.top-row {
+  font-weight: bold;
+}
+
 #calendar div {
+  display: grid;
   border: 1px solid #ccc;
   padding: 16px;
   text-align: center;

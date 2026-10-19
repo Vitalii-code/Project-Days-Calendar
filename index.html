@@ -1,11 +1,43 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/script.mjs"></script>
   </head>
   <body>
     <h1 id="month-heading"></h1>
+
+    <!-- <div id="days-of-week"> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title">1</span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!--   <div class="day"> -->
+    <!--     <span class="day-title"></span> -->
+    <!--   </div> -->
+    <!-- </div> -->
+
     <div id="calendar"></div>
+
+    <template id="day-template">
+      <div class="day">
+        <span class="day-number"></span>
+        <span class="day-title"></span>
+      </div>
+    </template>
   </body>
 </html>
