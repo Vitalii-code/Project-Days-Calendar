@@ -4,18 +4,20 @@ import {
   getDaysInMonth,
   getFirstDayOffset,
 } from "./common.mjs";
+import { eventAsDate, getEvents } from "./data.mjs";
 
 function buildCalendar(year, month) {
   const dayTemplate = document.querySelector("#day-template");
   const calendar = document.querySelector("#calendar");
   const monthHeading = document.querySelector("#month-heading");
 
+  // reset calendar
+  calendar.replaceChildren();
+
   const monthName = new Date(year, month).toLocaleString("en-GB", {
     month: "long",
   });
   monthHeading.innerText = `${monthName} ${year}`;
-
-  const numberOfDays = getDaysInMonth(year, month);
 
   // add days of the week, starting from Sunday
   for (let i = 6; i < 13; i++) {
@@ -35,6 +37,11 @@ function buildCalendar(year, month) {
     }
   }
 
+  let mockObj = getEvents()[0];
+
+  console.log(eventAsDate(mockObj, year));
+
+  const numberOfDays = getDaysInMonth(year, month);
   // add days of the month
   for (let day = 1; day <= numberOfDays; day++) {
     const clone = dayTemplate.content.cloneNode(true);

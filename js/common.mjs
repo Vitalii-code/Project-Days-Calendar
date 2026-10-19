@@ -8,6 +8,21 @@ export const daysOfWeek = [
   "Sunday",
 ];
 
+export const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export function getCurrentMonthAndYear() {
   const today = new Date();
 
