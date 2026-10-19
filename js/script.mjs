@@ -2,11 +2,18 @@ import {
   daysOfWeek,
   getCurrentMonthAndYear,
   getDaysInMonth,
+  getFirstDayOffset,
 } from "./common.mjs";
 
-function buildCalendar(month, year) {
+function buildCalendar(year, month) {
   const dayTemplate = document.querySelector("#day-template");
   const calendar = document.querySelector("#calendar");
+  const monthHeading = document.querySelector("#month-heading");
+
+  const monthName = new Date(year, month).toLocaleString("en-GB", {
+    month: "long",
+  });
+  monthHeading.innerText = `${monthName} ${year}`;
 
   const numberOfDays = getDaysInMonth(year, month);
 
@@ -18,22 +25,23 @@ function buildCalendar(month, year) {
     calendar.appendChild(clone);
   }
 
-  // what day is the first of this month?
-  // offset by one to match 1-indexing in the loop below
+  // what day of the week is the first of this month?
+  const firstDayOffset = getFirstDayOffset(year, month);
+  if (firstDayOffset != 0) {
+    // pad the first few days with empty cells
+    for (let i = 0; i < firstDayOffset + 1; i++) {
+      const clone = dayTemplate.content.cloneNode(true);
+      calendar.appendChild(clone);
+    }
+  }
 
-  const fistOfTheMonth = new Date(year, month + 1, 0).getDay() - 1;
-  let offset = 0;
   // add days of the month
-  for (let day = 1; day <= numberOfDays + offset; day++) {
+  for (let day = 1; day <= numberOfDays; day++) {
     const clone = dayTemplate.content.cloneNode(true);
-    clone.querySelector(".day-number").textContent = day - offset;
+    clone.querySelector(".day-number").textContent = day;
 
-    // calculate the offset somehow? and then add a bunch of empty days
-    if (day < fistOfTheMonth) {
-      clone.querySelector(".day-number").textContent = "";
-      offset += 1;
-
-      // clone.querySelector(".day-title").textContent = "Important day";
+    if (day === 1) {
+      clone.querySelector(".day-title").textContent = "Important day";
     }
 
     calendar.appendChild(clone);
@@ -41,16 +49,10 @@ function buildCalendar(month, year) {
 }
 
 function init() {
-  const monthHeading = document.querySelector("#month-heading");
-
   // month heading
   const { month, year } = getCurrentMonthAndYear();
-  const monthName = new Date().toLocaleString("en-GB", {
-    month: "long",
-  });
-  monthHeading.innerText = `${monthName} ${year}`;
 
-  buildCalendar(month, year);
+  buildCalendar(year, month);
 }
 
 init();
