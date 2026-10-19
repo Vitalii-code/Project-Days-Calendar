@@ -1,5 +1,12 @@
-// This is a placeholder file which shows how you can define functions which can be used from both a browser script and a node script. You can delete the contents of the file once you have understood how it works.
+export function getCurrentMonthAndYear() {
+  const today = new Date();
 
-export function getGreeting() {
-    return "Hello";
+  const month = today.getMonth();
+  const year = today.getFullYear();
+
+  return { month, year };
+}
+
+export function getDaysInMonth(year, month) {
+  return new Date(year, month + 1, 0).getDate();
 }
