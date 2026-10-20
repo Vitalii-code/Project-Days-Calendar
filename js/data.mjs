@@ -19,8 +19,15 @@ export function eventAsDate(obj, year) {
   // days from the 1st to the first matching weekday
   const firstMatch = 1 + ((targetWeekday - firstWeekday + 7) % 7);
 
+  if (obj.occurrence === "last") {
+    const lastDay = new Date(year, monthIndex + 1, 0);
+    const lastWeekday = (lastDay.getDay() + 6) % 7;
+    const day = lastDay.getDate() - ((lastWeekday - targetWeekday + 7) % 7);
+
+    return new Date(year, monthIndex, day);
+  }
+
   // each further occurrence is 7 days later
   const day = firstMatch + occurrenceNumber * 7;
-
   return new Date(year, monthIndex, day);
 }

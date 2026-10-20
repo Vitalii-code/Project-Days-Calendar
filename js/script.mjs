@@ -45,16 +45,19 @@ function buildCalendar(year, month) {
     }
   }
 
-  let mockObj = getEvents();
-
   const numberOfDays = getDaysInMonth(year, month);
   // add days of the month
   for (let day = 1; day <= numberOfDays; day++) {
     const clone = dayTemplate.content.cloneNode(true);
     clone.querySelector(".day-number").textContent = day;
 
-    if (day === 1) {
-      clone.querySelector(".day-title").textContent = "Important day";
+    // check if the month of an event is current month
+    for (const event of getEvents()) {
+      const date = eventAsDate(event, year);
+
+      if (date.getDate() === day && date.getMonth() === month) {
+        clone.querySelector(".day-title").textContent = event.name;
+      }
     }
 
     calendar.appendChild(clone);
@@ -81,7 +84,7 @@ function populateMonthSelect() {
 function populateYearSelect() {
   yearSelect.replaceChildren();
 
-  for (let year = 2026; year >= 2000; year--) {
+  for (let year = 2026; year >= 1900; year--) {
     const option = document.createElement("option");
     option.textContent = year;
     option.value = year;
@@ -114,21 +117,24 @@ form.addEventListener("submit", (event) => {
   const year = document.getElementById("year-select").value;
   const month = document.getElementById("month-select").value;
 
-  buildCalendar(year, month);
+  buildCalendar(Number(year), Number(month));
 });
 
 const backButton = document.getElementById("back-button");
 backButton.addEventListener("click", () => {
-  const newMonth = currentMonth - 1;
-
-  buildCalendar(currentYear, newMonth);
+  if (currentMonth > 0) {
+    const newMonth = Number(currentMonth) - 1;
+    buildCalendar(currentYear, newMonth);
+  }
 });
 
 const forwardButton = document.getElementById("forward-button");
 forwardButton.addEventListener("click", () => {
-  const newMonth = currentMonth + 1;
+  if (currentMonth < 11) {
+    const newMonth = Number(currentMonth) + 1;
 
-  buildCalendar(currentYear, newMonth);
+    buildCalendar(currentYear, newMonth);
+  }
 });
 
 init();

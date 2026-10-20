@@ -1,9 +1,6 @@
-import { jest } from "@jest/globals";
 import { eventAsDate } from "./data.mjs";
 
 test("returns the date for an event", () => {
-  const log = jest.spyOn(console, "log").mockImplementation(() => { });
-
   const result = eventAsDate(
     {
       monthName: "October",
@@ -14,8 +11,6 @@ test("returns the date for an event", () => {
   );
 
   expect(result).toEqual(new Date(2026, 9, 13));
-
-  log.mockRestore();
 });
 
 test("first occurrence when the 1st is the wanted weekday", () => {
@@ -40,4 +35,13 @@ test("first occurrence when the weekday is earlier than the 1st's weekday", () =
       2026,
     ),
   ).toEqual(new Date(2026, 9, 6));
+});
+
+test("last occurrence from the days data", () => {
+  expect(
+    eventAsDate(
+      { monthName: "October", dayName: "Friday", occurrence: "last" },
+      2026,
+    ),
+  ).toEqual(new Date(2026, 9, 30));
 });
