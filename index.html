@@ -8,29 +8,49 @@
     <script type="module" src="js/script.mjs"></script>
   </head>
   <body>
-    <header>
-      <h1 id="month-heading" aria-live="polite"></h1>
-      <div id="calendar-controls">
-        <button type="button" title="One month back" aria-label="Previous month" id="back-button">&lsaquo;</button>
-        <button type="button" title="One month forward" aria-label="Next month" id="forward-button">&rsaquo;</button>
-      </div>
+    <main>
+      <header>
+        <h1 id="month-heading" aria-live="polite"></h1>
 
-      <form id="year-month-submit" aria-label="Choose a month and year">
-        <label for="month-select">Month</label>
-        <select id="month-select"></select>
-        <label for="year-select">Year</label>
-        <select id="year-select"></select>
-        <button type="submit">Go to month</button>
-      </form>
-    </header>
+        <div id="calendar-controls">
+          <button
+            type="button"
+            title="One month back"
+            aria-label="Previous month"
+            id="back-button"
+          >
+            &lsaquo;
+          </button>
 
-    <div id="calendar" role="grid" aria-labelledby="month-heading"></div>
+          <button
+            type="button"
+            title="One month forward"
+            aria-label="Next month"
+            id="forward-button"
+          >
+            &rsaquo;
+          </button>
+        </div>
 
-    <template id="day-template">
-      <div class="day" role="gridcell">
-        <span class="day-number"></span>
-        <span class="day-title"></span>
-      </div>
-    </template>
+        <form id="year-month-submit" aria-label="Choose a month and year">
+          <label for="month-select">Month</label>
+          <select id="month-select"></select>
+
+          <label for="year-select">Year</label>
+          <select id="year-select"></select>
+
+          <button type="submit">Go to month</button>
+        </form>
+      </header>
+
+      <div id="calendar" role="grid" aria-labelledby="month-heading"></div>
+
+      <template id="day-template">
+        <div class="day" role="gridcell">
+          <span class="day-number"></span>
+          <span class="day-title"></span>
+        </div>
+      </template>
+    </main>
   </body>
 </html>
