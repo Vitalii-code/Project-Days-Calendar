@@ -37,12 +37,6 @@ export function getDaysInMonth(year, month) {
 }
 
 export function getFirstDayOffset(year, month) {
-  const result = (new Date(year, month, 1).getDay() + 6) % 7;
-
-  // we don't need to offset by 6 because it just wastes space
-  if (result >= 6) {
-    return 0;
-  }
-
-  return result; // Monday = 0
+  // Return the number of empty boxes before the first day (Sunday = 0)
+  return new Date(year, month, 1).getDay();
 }
