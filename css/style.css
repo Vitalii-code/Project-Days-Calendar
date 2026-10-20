@@ -5,38 +5,41 @@
 body {
   max-width: 960px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 1rem;
   color: #222;
   font-family: "Inter", sans-serif;
 }
 
 header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: end;
-  gap: 16px;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
 }
 
 h1 {
-  margin: 0;
-  font-size: 1.75rem;
+  margin: 0 auto 0 0;
+  font-size: 1.5rem;
 }
 
-form {
+#calendar-controls,
+#year-month-submit {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  /* margin-left: auto; */
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.9rem;
 }
 
 select,
-button[type="submit"] {
-  padding: 6px 8px;
+button {
+  height: 2.5rem;
+  padding: 0.5rem;
   font: inherit;
 }
 
@@ -44,42 +47,42 @@ button[type="submit"] {
   display: block;
 }
 
-#calendar .calendar-row {
+.calendar-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 
-#calendar .day {
-  display: grid;
-  min-height: 90px;
-  align-content: start;
-  gap: 8px;
+.day {
+  min-height: 5rem;
+  padding: 0.5rem;
   border: 1px solid #ccc;
-  padding: 8px;
   text-align: center;
 }
 
-#calendar .day:empty {
+.day:empty {
   border-color: transparent;
 }
 
 .day-number {
+  display: block;
+  margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
 .day-title {
+  display: block;
   font-size: 0.9rem;
 }
 
-#calendar .day:has(.top-row) {
+.day:has(.top-row) {
   min-height: auto;
+  padding: 0.25rem;
   border: 0;
-  padding: 4px;
 }
 
-#calendar .day:has(.top-row) .day-number {
+.day:has(.top-row) .day-number {
   display: none;
 }
 
@@ -87,23 +90,14 @@ button[type="submit"] {
   font-weight: bold;
 }
 
-#calendar-controls {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 16px;
-}
-
 #calendar-controls button {
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
-  min-width: 3rem;
-  min-height: 3rem;
+  min-width: 2.5rem;
+  font-size: inherit;
 }
 
 @media (max-width: 600px) {
   body {
-    padding: 12px 8px;
+    padding: 0.5rem;
   }
 
   header {
@@ -111,17 +105,19 @@ button[type="submit"] {
     flex-direction: column;
   }
 
-  form {
-    width: 100%;
+  h1 {
+    margin-right: 0;
   }
 
-  #calendar {
-    gap: 2px;
+  #calendar-controls,
+  #year-month-submit {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  #calendar .day {
-    min-height: 64px;
-    padding: 4px;
+  .day {
+    min-height: 4rem;
+    padding: 0.25rem;
   }
 
   .day-title {
