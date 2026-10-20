@@ -1,27 +1,28 @@
 # Days calendar project plan
 
-Status markers: `[x]` complete, `[~]` started but incomplete, `[ ]` not started.
+Status markers: `[x]` complete, `[~]` started but incomplete, `[ ]` not
+started.
 
-The repository currently has the supplied data, a basic browser entry point, a
-date helper for first-to-fourth weekday occurrences, and initial Jest tests.
-The calendar UI is still a partial implementation: it renders a heading and
-day cells, but does not yet render a correct Sunday-first calendar or the
-commemorative events.
+Current status: the project has a basic styled calendar page, a local
+`serve` script, month/year selectors, shared date helpers, and seven passing
+unit tests. The browser implementation still contains placeholder rendering,
+does not show commemorative events, and does not yet have working navigation.
 
 ## 1. Setup and delivery
 
 - [x] Keep the supplied `days.json` data and project scaffolding in the repo
+- [x] Add a local HTTP command for ES modules: `pnpm serve`
 - [x] Add automatic deployment on merge (for example, GitHub Pages via Actions)
-- [x] Document or add a local HTTP serving command for ES modules
+- [x] Confirm the deployed site works after the latest merge
 
 ## 2. Date logic and tests
 
-- [x] Read the month, weekday, and occurrence fields from `days.json`
+- [x] Read month, weekday, and occurrence fields from `days.json`
 - [~] Resolve an event pattern to an exact date without hard-coded event names
 - [ ] Support the `last` weekday occurrence as well as first through fourth
-- [ ] Make date calculations timezone/DST-safe (use UTC or a stable
-      construction strategy)
-- [~] Keep shared date-logic tests, expanding them to cover:
+- [ ] Make date calculations timezone/DST-safe using UTC or another stable
+      construction strategy
+- [~] Expand tests to cover:
   - Ada Lovelace Day on 2024-10-08, 2025-10-14, and 2020-10-13
   - World Lemur Day on 2024-10-25 and 2020-10-30
   - International Binturong Day on 2030-05-11
@@ -38,24 +39,29 @@ commemorative events.
   - 2025-02 has 6 leading days
   - 2025-05 starts on Thursday and ends on Saturday
   - 2026-02 is exactly 4 weeks
-- [~] Render the calendar cells through DOM manipulation rather than
-  hand-written day cells
-- [ ] Render weekday headers and month days in the correct Sunday-first grid
+- [~] Render the calendar cells through DOM manipulation; the current page
+  renders headers and day cells but still has incorrect padding behavior
+- [ ] Render a correct Sunday-first grid for every month
 - [ ] Generate and display every applicable commemorative day from the JSON
 - [x] Default to the current month on initial load
-- [ ] Remove placeholder output, including the hard-coded first-day label and
-      debug logging
+- [ ] Remove placeholder code, including the hard-coded first-day label and
+      unused event variable
+- [ ] Ensure the heading and selectors update whenever the displayed month
+      changes
 
 ## 4. Navigation and date selection
 
+- [~] Add month/year selectors; the current selectors jump only within the
+  initial year range and are not synchronized after rendering
 - [ ] Add previous and next buttons with unlimited month/year rollover
-- [ ] Add month and year controls for jumping directly to a month
-- [ ] Keep controls, heading, and grid synchronized after every navigation
+- [ ] Make selector submission update the calendar state consistently
 - [ ] Ensure the UI never displays `undefined`, `null`, or `NaN`
-- [ ] Verify years such as 1900 and 2050
+- [ ] Verify years such as 1900 and 2050, including navigation beyond selector
+      limits
 
 ## 5. Accessibility and cleanup
 
+- [ ] Add labels and accessible names to the month/year controls and buttons
 - [ ] Use semantic, labelled controls and suitable table or grid markup
 - [ ] Ensure every month view has sufficient colour contrast and accessible
       names/states
@@ -83,7 +89,6 @@ commemorative events.
 
 ## 8. Submission
 
-- [ ] Confirm the deployed site works after the latest merge
 - [ ] Submit the GitHub repository link and deployed site link
 - [ ] Check the project submission requirements
 - [ ] Complete a final pass against the rubric

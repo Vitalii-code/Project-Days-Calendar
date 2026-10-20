@@ -5,7 +5,20 @@
     <script type="module" src="js/script.mjs"></script>
   </head>
   <body>
-    <h1 id="month-heading"></h1>
+    <header>
+      <h1 id="month-heading"></h1>
+      <div id="calendar-controls">
+        <button title="One month back" id="back-button"><</button>
+        <button title="One month forward" id="forward-button">></button>
+      </div>
+
+      <form id="year-month-submit">
+        <select id="year-select"></select>
+        <select id="month-select"></select>
+        <input type="submit" value="Submit" />
+      </form>
+    </header>
+
     <div id="calendar"></div>
 
     <template id="day-template">

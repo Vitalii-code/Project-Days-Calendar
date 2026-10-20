@@ -13,8 +13,8 @@ export function eventAsDate(obj, year) {
   const targetWeekday = daysOfWeek.indexOf(obj.dayName);
   const occurrenceNumber = occurrences.indexOf(obj.occurrence);
 
-  // weekday of the 1st of the month (0 = Sunday, matching getDay())
-  const firstWeekday = new Date(year, monthIndex, 1).getDay();
+  // weekday of the 1st of the month (0 = Monday, matching daysOfWeek)
+  const firstWeekday = (new Date(year, monthIndex, 1).getDay() + 6) % 7;
 
   // days from the 1st to the first matching weekday
   const firstMatch = 1 + ((targetWeekday - firstWeekday + 7) % 7);
