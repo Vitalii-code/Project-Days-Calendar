@@ -27,21 +27,40 @@ function buildCalendar(year, month) {
   });
   monthHeading.innerText = `${monthName} ${year}`;
 
+  const appendRow = (cells) => {
+    const row = document.createElement("div");
+    row.className = "calendar-row";
+    row.setAttribute("role", "row");
+    for (const cell of cells) {
+      row.appendChild(cell);
+    }
+    calendar.appendChild(row);
+  };
+
   // add days of the week, starting from Sunday
+  const dayHeaders = [];
   for (let i = 6; i < 13; i++) {
     const clone = dayTemplate.content.cloneNode(true);
+    const day = clone.querySelector(".day");
+    day.setAttribute("role", "columnheader");
+    day.setAttribute("aria-label", daysOfWeek[i % 7]);
     clone.querySelector(".day-title").classList.add("top-row");
     clone.querySelector(".day-title").textContent = daysOfWeek[i % 7];
-    calendar.appendChild(clone);
+    dayHeaders.push(clone);
   }
+  appendRow(dayHeaders);
 
   // what day of the week is the first of this month?
   const firstDayOffset = getFirstDayOffset(year, month);
+  const days = [];
   if (firstDayOffset != 0) {
     // pad the first few days with empty cells
     for (let i = 0; i < firstDayOffset + 1; i++) {
       const clone = dayTemplate.content.cloneNode(true);
-      calendar.appendChild(clone);
+      const day = clone.querySelector(".day");
+      day.removeAttribute("role");
+      day.setAttribute("aria-hidden", "true");
+      days.push(clone);
     }
   }
 
@@ -49,7 +68,12 @@ function buildCalendar(year, month) {
   // add days of the month
   for (let day = 1; day <= numberOfDays; day++) {
     const clone = dayTemplate.content.cloneNode(true);
+    const dayCell = clone.querySelector(".day");
     clone.querySelector(".day-number").textContent = day;
+    dayCell.setAttribute(
+      "aria-label",
+      `${monthNames[month]} ${day}, ${year}`,
+    );
 
     // check if the month of an event is current month
     for (const event of getEvents()) {
@@ -57,10 +81,18 @@ function buildCalendar(year, month) {
 
       if (date.getDate() === day && date.getMonth() === month) {
         clone.querySelector(".day-title").textContent = event.name;
+        dayCell.setAttribute(
+          "aria-label",
+          `${event.name}, ${monthNames[month]} ${day}, ${year}`,
+        );
       }
     }
 
-    calendar.appendChild(clone);
+    days.push(clone);
+  }
+
+  for (let i = 0; i < days.length; i += 7) {
+    appendRow(days.slice(i, i + 7));
   }
 }
 

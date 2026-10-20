@@ -1,28 +1,33 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Days calendar</title>
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/script.mjs"></script>
   </head>
   <body>
     <header>
-      <h1 id="month-heading"></h1>
+      <h1 id="month-heading" aria-live="polite"></h1>
       <div id="calendar-controls">
-        <button title="One month back" id="back-button"><</button>
-        <button title="One month forward" id="forward-button">></button>
+        <button type="button" title="One month back" aria-label="Previous month" id="back-button">&larr;</button>
+        <button type="button" title="One month forward" aria-label="Next month" id="forward-button">&rarr;</button>
       </div>
 
-      <form id="year-month-submit">
-        <select id="year-select"></select>
+      <form id="year-month-submit" aria-label="Choose a month and year">
+        <label for="month-select">Month</label>
         <select id="month-select"></select>
-        <input type="submit" value="Submit" />
+        <label for="year-select">Year</label>
+        <select id="year-select"></select>
+        <button type="submit">Go to month</button>
       </form>
     </header>
 
-    <div id="calendar"></div>
+    <div id="calendar" role="grid" aria-labelledby="month-heading"></div>
 
     <template id="day-template">
-      <div class="day">
+      <div class="day" role="gridcell">
         <span class="day-number"></span>
         <span class="day-title"></span>
       </div>
