@@ -23,6 +23,9 @@ export const monthNames = [
   "December",
 ];
 
+export const firstSelectableYear = 1900;
+export const lastSelectableYear = 2026;
+
 export function getCurrentMonthAndYear() {
   const today = new Date();
 

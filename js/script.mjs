@@ -1,8 +1,10 @@
 import {
   daysOfWeek,
+  firstSelectableYear,
   getCurrentMonthAndYear,
   getDaysInMonth,
   getFirstDayOffset,
+  lastSelectableYear,
   monthNames,
 } from "./common.mjs";
 import { eventAsDate, getEvents } from "./data.mjs";
@@ -113,7 +115,7 @@ function populateMonthSelect() {
 function populateYearSelect() {
   yearSelect.replaceChildren();
 
-  for (let year = 2026; year >= 1900; year--) {
+  for (let year = lastSelectableYear; year >= firstSelectableYear; year--) {
     const option = document.createElement("option");
     option.textContent = year;
     option.value = year;
