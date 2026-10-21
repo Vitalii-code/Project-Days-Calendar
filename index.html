@@ -11,8 +11,22 @@
     <header>
       <h1 id="month-heading" aria-live="polite"></h1>
       <div id="calendar-controls">
-        <button type="button" title="One month back" aria-label="Previous month" id="back-button">&lsaquo;</button>
-        <button type="button" title="One month forward" aria-label="Next month" id="forward-button">&rsaquo;</button>
+        <button
+          type="button"
+          title="One month back"
+          aria-label="Previous month"
+          id="back-button"
+        >
+          &lsaquo;
+        </button>
+        <button
+          type="button"
+          title="One month forward"
+          aria-label="Next month"
+          id="forward-button"
+        >
+          &rsaquo;
+        </button>
       </div>
 
       <form id="year-month-submit" aria-label="Choose a month and year">
@@ -24,13 +38,15 @@
       </form>
     </header>
 
-    <div id="calendar" role="grid" aria-labelledby="month-heading"></div>
+    <main>
+      <div id="calendar" role="grid" aria-labelledby="month-heading"></div>
 
-    <template id="day-template">
-      <div class="day" role="gridcell">
-        <span class="day-number"></span>
-        <span class="day-title"></span>
-      </div>
-    </template>
+      <template id="day-template">
+        <div class="day" role="gridcell">
+          <span class="day-number"></span>
+          <span class="day-title"></span>
+        </div>
+      </template>
+    </main>
   </body>
 </html>
