@@ -156,6 +156,11 @@ backButton.addEventListener("click", () => {
   if (currentMonth > 0) {
     const newMonth = Number(currentMonth) - 1;
     buildCalendar(currentYear, newMonth);
+  } else {
+    const newMonth = 11;
+    const newYear = Number(currentYear) - 1;
+
+    buildCalendar(newYear, newMonth);
   }
 });
 
@@ -163,8 +168,12 @@ const forwardButton = document.getElementById("forward-button");
 forwardButton.addEventListener("click", () => {
   if (currentMonth < 11) {
     const newMonth = Number(currentMonth) + 1;
-
     buildCalendar(currentYear, newMonth);
+  } else {
+    const newMonth = 0;
+    const newYear = Number(currentYear) + 1;
+
+    buildCalendar(newYear, newMonth);
   }
 });
 
