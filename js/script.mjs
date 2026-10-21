@@ -98,15 +98,12 @@ function buildCalendar(year, month) {
 function populateMonthSelect() {
   monthSelect.replaceChildren();
 
-  let i = 0;
   for (const monthName of monthNames) {
     const option = document.createElement("option");
     option.textContent = monthName;
     option.value = monthNames.indexOf(monthName);
 
     monthSelect.appendChild(option);
-
-    i++;
   }
 
   monthSelect.value = currentMonth;
@@ -115,7 +112,10 @@ function populateMonthSelect() {
 function populateYearSelect() {
   yearSelect.replaceChildren();
 
-  for (let year = lastSelectableYear; year >= firstSelectableYear; year--) {
+  const firstYear = Math.min(firstSelectableYear, currentYear);
+  const lastYear = Math.max(lastSelectableYear, currentYear);
+
+  for (let year = lastYear; year >= firstYear; year--) {
     const option = document.createElement("option");
     option.textContent = year;
     option.value = year;
