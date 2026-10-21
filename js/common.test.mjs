@@ -36,9 +36,9 @@ test("returns the number of days in a month", () => {
   expect(getDaysInMonth(2025, 6)).toBe(31);
 });
 
-test("returns the offset for the first day of a month", () => {
-  expect(getFirstDayOffset(2026, 1)).toBe(0);
-  expect(getFirstDayOffset(2025, 1)).toBe(5);
-  expect(getFirstDayOffset(2025, 4)).toBe(3);
-  expect(getFirstDayOffset(2024, 11)).toBe(0);
+test("returns the correct offset for the first day of a month", () => {
+  expect(getFirstDayOffset(2024, 11)).toBe(0); // December 2024
+  expect(getFirstDayOffset(2025, 1)).toBe(6); // February 2025
+  expect(getFirstDayOffset(2025, 4)).toBe(4); // May 2025
+  expect(getFirstDayOffset(2026, 1)).toBe(0); // February 2026
 });

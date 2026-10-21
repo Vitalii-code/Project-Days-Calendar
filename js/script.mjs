@@ -55,7 +55,7 @@ function buildCalendar(year, month) {
   const days = [];
   if (firstDayOffset != 0) {
     // pad the first few days with empty cells
-    for (let i = 0; i < firstDayOffset + 1; i++) {
+    for (let i = 0; i < firstDayOffset; i++) {
       const clone = dayTemplate.content.cloneNode(true);
       const day = clone.querySelector(".day");
       day.removeAttribute("role");
@@ -70,10 +70,7 @@ function buildCalendar(year, month) {
     const clone = dayTemplate.content.cloneNode(true);
     const dayCell = clone.querySelector(".day");
     clone.querySelector(".day-number").textContent = day;
-    dayCell.setAttribute(
-      "aria-label",
-      `${monthNames[month]} ${day}, ${year}`,
-    );
+    dayCell.setAttribute("aria-label", `${monthNames[month]} ${day}, ${year}`);
 
     // check if the month of an event is current month
     for (const event of getEvents()) {
